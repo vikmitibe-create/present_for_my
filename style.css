@@ -1,0 +1,495 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #160d1d;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   ГЛАВНАЯ СТРАНИЦА
+======================================== */
+
+.sp {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 45%,
+            rgba(255, 170, 225, 0.18),
+            transparent 30%),
+        linear-gradient(45deg,
+            #92457d,
+            #441963,
+            #5c275b,
+            #7b297b);
+    background-size: 600% 600%;
+    animation: gradientMove 10s ease infinite;
+    transition:
+        opacity 800ms ease;
+}
+
+.sp img {
+    max-width: 85vw;
+    max-height: 40vh;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, .3);
+    animation:
+        startImage 1.2s cubic-bezier(.2, .8, .2, 1);
+}
+
+.sp h2 {
+    margin: 0;
+    color: white;
+    text-align: center;
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 700;
+    animation:
+        startText 1.3s cubic-bezier(.2, .8, .2, 1);
+}
+
+.datebar {
+    width: min(300px, 80vw);
+    padding: 13px 16px;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .92);
+    color: #26172b;
+    font-size: 16px;
+    outline: none;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .15);
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.datebar:focus {
+    transform: scale(1.03);
+    box-shadow:
+        0 0 0 4px rgba(255, 180, 230, .18),
+        0 10px 35px rgba(0, 0, 0, .2);
+}
+
+#launchButton {
+    padding: 13px 30px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, .12);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+#launchButton:hover {
+    transform: translateY(-3px) scale(1.04);
+    background: rgba(255, 255, 255, .2);
+}
+
+/* ========================================
+   ЦВЕТЫ
+======================================== */
+
+#flowers {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ========================================
+   СЦЕНА
+======================================== */
+
+.scene {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 1200px;
+    background:
+        radial-gradient(circle at 50% 50%,
+            rgba(174, 94, 170, .18),
+            transparent 30%),
+        radial-gradient(circle at 10% 90%,
+            rgba(117, 65, 150, .13),
+            transparent 35%),
+        linear-gradient(135deg,
+            #130a1a,
+            #29132f,
+            #180d20);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 900ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.scene.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ========================================
+   СВЕЧЕНИЕ
+======================================== */
+
+.gift-glow {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 180px;
+    height: 180px;
+    transform:
+        translate(-50%, -50%) scale(.1);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,
+            rgba(255, 180, 235, .65),
+            rgba(220, 110, 220, .2) 40%,
+            transparent 70%);
+    filter: blur(35px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 1.5s cubic-bezier(.2, .8, .2, 1),
+        opacity 1.2s ease;
+    z-index: 0;
+}
+
+.scene.visible .gift-glow {
+    transform:
+        translate(-50%, -50%) scale(3);
+    opacity: .8;
+}
+
+/* ========================================
+   КАРТОЧКИ
+======================================== */
+
+.cards-container {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+.card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 230px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    background:
+        linear-gradient(145deg,
+            rgba(255, 255, 255, .15),
+            rgba(255, 255, 255, .04));
+    border:
+        1px solid rgba(255, 255, 255, .25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, .35),
+        inset 0 1px 1px rgba(255, 255, 255, .15);
+    opacity: 0;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    will-change:
+        transform,
+        opacity;
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        box-shadow .3s ease,
+        filter .3s ease;
+}
+
+.card>img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    transition:
+        transform .5s ease;
+}
+
+.card:hover {
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, .45),
+        0 0 35px rgba(255, 170, 230, .15);
+}
+
+.card:hover>img {
+    transform: scale(1.04);
+}
+
+/* ========================================
+   ОТКРЫТАЯ КАРТОЧКА
+======================================== */
+
+.card.is-open {
+    width: min(82vw, 650px);
+    height: min(84vh, 800px);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 25px;
+    background:
+        rgba(30, 17, 37, .34);
+    border:
+        1px solid rgba(255, 255, 255, .28);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, .58),
+        0 0 70px rgba(220, 130, 220, .15);
+    cursor: default;
+}
+
+.card.is-open>img {
+    width: 100%;
+    height: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    object-fit: contain;
+    transform: none;
+    border-radius: 15px;
+}
+
+/* ========================================
+   ТЕКСТ
+======================================== */
+
+.card-text {
+    display: none;
+    gap: 25px;
+}
+
+.card.is-open .card-text {
+    display: block;
+    width: 100%;
+    max-height: 27%;
+    flex: 0 0 auto;
+    overflow-y: auto;
+    padding: 12px 15px;
+    color: white;
+    text-align: center;
+    background:
+        rgba(255, 255, 255, .07);
+    border:
+        1px solid rgba(255, 255, 255, .13);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.card.is-open .card-text h2 {
+    margin: 0 0 7px;
+    color: white;
+    font-size: 21px;
+}
+
+.card.is-open .card-text p {
+    margin: 0;
+    color: rgba(255, 255, 255, .88);
+    line-height: 1.5;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 15px;
+}
+
+/* ========================================
+   КНОПКА
+======================================== */
+
+.close-card {
+    display: none;
+}
+
+.card.is-open .close-card {
+    display: block;
+    position: relative;
+    z-index: 5;
+    align-self: center;
+    flex-shrink: 0;
+    padding: 10px 22px;
+    border:
+        1px solid rgba(255, 255, 255, .22);
+    border-radius: 50px;
+    background:
+        rgba(255, 255, 255, .1);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+.card.is-open .close-card:hover {
+    transform: translateY(-2px);
+    background:
+        rgba(255, 255, 255, .18);
+}
+
+/* ========================================
+   ОСТАЛЬНЫЕ КАРТОЧКИ
+======================================== */
+
+.cards-container.has-open-card .card:not(.is-open) {
+    filter:
+        brightness(.3) blur(2px);
+    pointer-events: none;
+}
+
+/* ========================================
+   МИНЬОНЫ
+======================================== */
+
+.floating-decorations {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.minion {
+    position: fixed;
+    width: 75px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    pointer-events: none;
+    user-select: none;
+    will-change:
+        transform,
+        opacity;
+    opacity: 0;
+}
+
+
+
+
+/* ========================================
+   АДАПТИВ
+======================================== */
+
+@media (max-width: 600px) {
+
+    .card {
+        width: 130px;
+        height: 170px;
+    }
+
+    .card.is-open {
+        width: 90vw;
+        height: 84vh;
+
+        padding: 10px;
+    }
+
+    .card.is-open .card-text {
+        max-height: 30%;
+
+        padding: 9px;
+    }
+
+    .card.is-open .card-text h2 {
+        font-size: 18px;
+    }
+
+    .card.is-open .card-text p {
+        font-size: 14px;
+    }
+
+    .minion {
+        width: 52px;
+    }
+}
+
+/* ========================================
+   АНИМАЦИИ ГЛАВНОЙ
+======================================== */
+
+@keyframes startImage {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-35px) scale(.92);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
