@@ -96,7 +96,12 @@ function startCardAnimation() {
 dateInput.addEventListener("change", function () {
     if (!this.value) return;
 
-    if (this.value === correctDate) {
+    const selectedDate = this.value;
+
+    console.log("Выбрана дата:", selectedDate);
+    console.log("Правильная дата:", correctDate);
+
+    if (selectedDate === correctDate) {
         startCardAnimation();
     } else {
         alert("Да бля...");
