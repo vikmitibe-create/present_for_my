@@ -103,10 +103,7 @@ dateInput.addEventListener("change", function () {
 
     if (selectedDate === correctDate) {
         startCardAnimation();
-    } else {
-        alert("Да бля...");
-        this.value = "";
-    }
+    }  
 });
 
 // ========================================
