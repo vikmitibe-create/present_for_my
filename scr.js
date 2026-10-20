@@ -598,3 +598,23 @@ function animateMinions() {
     });
     minionsFrame = requestAnimationFrame(animateMinions);
 }
+
+
+const music = document.getElementById("backgroundMusic");
+const musicButton = document.getElementById("musicButton");
+
+music.volume = 0.3;
+
+musicButton.addEventListener("click", async () => {
+    if (music.paused) {
+        try {
+            await music.play();
+            musicButton.textContent = "⏸️";
+        } catch (error) {
+            console.log("Не удалось запустить музыку:", error);
+        }
+    } else {
+        music.pause();
+        musicButton.textContent = "▶️";
+    }
+});
