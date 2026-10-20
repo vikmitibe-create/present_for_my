@@ -93,19 +93,20 @@ function startCardAnimation() {
 // launchButton.addEventListener("click", startCardAnimation);
 
 // Запуск при правильной дате
-dateInput.addEventListener("change", function () {
-    if (!this.value) return;
+const dateInput = document.getElementById("dateDate");
+const correctDate = "2025-10-21";
 
+dateInput.addEventListener("change", function () {
     const selectedDate = this.value;
 
-    console.log("Выбрана дата:", selectedDate);
-    console.log("Правильная дата:", correctDate);
-
     if (selectedDate === correctDate) {
-        startCardAnimation();
+        // Правильная дата
+        console.log("Дата введена правильно");
+
+        // Здесь оставь действие, которое должно происходить
+        // после правильного ввода даты
     } else {
         alert("Да бля...");
-        this.value = "";
     }
 });
 
