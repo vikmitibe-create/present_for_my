@@ -103,7 +103,10 @@ dateInput.addEventListener("change", function () {
 
     if (selectedDate === correctDate) {
         startCardAnimation();
-    }  
+    } else {
+        alert("Да бля...");
+        this.value = "";
+    }
 });
 
 // ========================================
@@ -596,8 +599,10 @@ function animateMinions() {
         minion.img.style.transform =
             `translate(${minion.x}px, ${minion.y}px) rotate(${minion.angle}deg)`;
     });
+
     minionsFrame = requestAnimationFrame(animateMinions);
 }
+
 
 
 const music = document.getElementById("backgroundMusic");

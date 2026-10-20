@@ -96,7 +96,26 @@ main {
         0 10px 35px rgba(0, 0, 0, .2);
 }
 
+#musicButton {
+    padding: 13px 30px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, .12);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
 
+#musicButton:hover {
+    transform: translateY(-3px) scale(1.04);
+    background: rgba(255, 255, 255, .2);
+}
 
 /* ========================================
    ЦВЕТЫ
@@ -399,25 +418,7 @@ main {
     opacity: 0;
 }
 
-#musicButton {
-    padding: 13px 30px;
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 50px;
-    background: rgba(255, 255, 255, .12);
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    cursor: pointer;
-    transition:
-        transform .25s ease,
-        background .25s ease;
-}
 
-#musicButton:hover {
-    transform: translateY(-3px) scale(1.04);
-    background: rgba(255, 255, 255, .2);
 
 
 /* ========================================
