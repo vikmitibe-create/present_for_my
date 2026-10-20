@@ -599,7 +599,7 @@ function animateMinions() {
 
 
 
-    const music = document.getElementById("backgroundMusic");
+const music = document.getElementById("backgroundMusic");
 const musicButton = document.getElementById("musicButton");
 
 music.volume = 0.3;
